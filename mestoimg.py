@@ -3,9 +3,9 @@
 
 from PIL import Image, ImageDraw, ImageFont
 import textwrap
+import time
 
-
-def wordwrap(num, words):
+def wordwrap(words):
     afterwrap = []
     words = words.split('\n')
     for i in range(len(words)):
@@ -14,9 +14,9 @@ def wordwrap(num, words):
             afterwrap.extend(s)
         else:
             afterwrap.append(words[i])
-    lines = len(afterwrap)+1
-    afterwrap = '\n'.join(afterwrap)
-    imgwords = num+'\n'+afterwrap
+    lines = len(afterwrap)
+    imgwords = '\n'.join(afterwrap)
+    
     return lines, imgwords
 
 
@@ -34,7 +34,7 @@ def picture(lines, words2):
     # 同時決定字的大小
 
     font = ImageFont.truetype(
-        font='C:/windows/fonts/msjhbd.ttc', size=40)
+        font='msjhbd.ttc', size=40)
 
     ImDr2 = ImageDraw.Draw(image)
     ImDr2.text(xy=(5, 0), text=words2, font=font,
@@ -43,8 +43,8 @@ def picture(lines, words2):
 
 
 if __name__ == '__main__':
-    pid = input()
+    
     ptext = input()
-    line, word = wordwrap(pid, ptext)
+    line, word = wordwrap(ptext)
     img = picture(line, word)
-    img.save('image.png', 'png')
+    img.save(time.strftime('%Y%m%d%H%M%S')+'.png', 'png')
