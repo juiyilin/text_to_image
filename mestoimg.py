@@ -6,14 +6,9 @@ import textwrap
 import time
 
 def wordwrap(words):
-    afterwrap = []
-    words = words.split('\n')
-    for i in range(len(words)):
-        if len(words[i]) > 19:
-            s = textwrap.wrap(words[i], width=20)
-            afterwrap.extend(s)
-        else:
-            afterwrap.append(words[i])
+    afterwrap = []  
+    s = textwrap.wrap(words, width=20)
+    afterwrap.extend(s)
     lines = len(afterwrap)
     imgwords = '\n'.join(afterwrap)
     
